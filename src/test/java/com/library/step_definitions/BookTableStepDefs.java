@@ -25,15 +25,20 @@ public class BookTableStepDefs {
 
         System.out.println("actualName = " + actualName);
         System.out.println("actualAuthor = " + actualAuthor);
+
+
         //get information from database
 
         String query = "select name, isbn,year,author,description from books\n" +
                 "where name = '"+bookName+"'";
 
+
+
         //since we are getting only one row, we will use getRowMap method
         Map<String, Object> dbData = DBUtils.getRowMap(query);
 
         System.out.println(dbData.toString());
+
 
         String expectedName = dbData.get("name").toString();
         String expectedISBN = dbData.get("isbn").toString();
@@ -48,7 +53,10 @@ public class BookTableStepDefs {
         Assert.assertEquals("did not match ISBN",expectedISBN,actualISBN);
         Assert.assertEquals("did not match Description",expectedDesc,actualDesc);
 
-        //real life you dont save those info into variables
+
+
+
+        //real life you don't save this info into variables
         Assert.assertEquals(booksPage.bookName.getAttribute("value"),dbData.get("name").toString());
 
 
